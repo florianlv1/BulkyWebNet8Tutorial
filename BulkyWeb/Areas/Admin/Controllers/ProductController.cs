@@ -26,12 +26,17 @@ namespace BulkyWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Product obj)
         {
+            if (obj.Title == "Test")
+            {
+
+                ModelState.AddModelError("Title", "Test is not a valid name.");
+            }
 
             if (ModelState.IsValid)
             {
                 _unitOfWork.Product.Add(obj);
                 _unitOfWork.Save();
-                TempData["success"] = "Product created succesfully";
+                TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
 
             }
