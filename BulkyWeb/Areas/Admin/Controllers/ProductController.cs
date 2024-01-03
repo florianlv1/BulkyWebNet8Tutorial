@@ -44,7 +44,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
                 return View(productVM);
             }
-            return View(productVM);
         }
 
         [HttpPost]
@@ -69,7 +68,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    productVM.Product.ImageUrl = @"images\product" + fileName;
+                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
                 else
                 {
